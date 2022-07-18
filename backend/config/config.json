@@ -1,0 +1,9 @@
+{
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "projet7",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
