@@ -1,13 +1,31 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
 
-const Db = require("./db/db.js")
+const Db = require("./db/db.js");
+// const User = require("./models/user.js")
+const models = require("./models/")
+// console.log(db)
 
-Db.sync().then((console.log("connexion a la bdd")))
+Db.sync({force : true})
+.then((console.log("Bdd créé")))
 .catch(error => console.log(error))
 
-app.use((req, res) => {
-   res.json({ message: 'Votre requête a bien été reçue !' }); 
+const userRoutes = require('./routes/users.js');
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
 });
+
+// app.use((req, res) => {
+//    res.json({ message: 'Votre requête a bien été reçue !' }); 
+// });
+
+
+app.use('/api/auth', userRoutes);
+
 
 module.exports = app;
