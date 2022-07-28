@@ -2,7 +2,7 @@
 const express = require('express'); 
 const router = express.Router(); 
 
-const userCtrl = require('../controllers/users') // Utilsiation du controlleur User
+const userCtrl = require('../controllers/users') // Utilisation du controlleur User
 
 router.post('/signup', userCtrl.signup); // Création d'un nouvel user avec contrôle du format de password
 
