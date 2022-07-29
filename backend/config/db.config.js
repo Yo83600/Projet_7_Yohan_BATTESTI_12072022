@@ -1,7 +1,7 @@
 module.exports = {
-    "username": "root",
-    "password": null,
-    "database": "projet7",
-    "host": "127.0.0.1",
+    "username": `${process.env.SECRET_USER}`,
+    "password": `${process.env.SECRET_PASSWORD}`,
+    "database": `${process.env.SECRET_DB}`,
+    "host": `${process.env.SECRET_HOST}`,
     "dialect": "mysql"
   }
