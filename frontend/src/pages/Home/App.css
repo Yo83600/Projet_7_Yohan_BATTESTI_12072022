@@ -1,0 +1,57 @@
+body{
+ background-color: #f5f5f5;
+}
+
+.App {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin-top: 100px;
+  font-family: 'Roboto', sans-serif;
+}
+
+form {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 40px 60px;
+  border-radius: 10px;
+  min-width: 300px;
+}
+form h1{
+  color: #FD2D01;
+  text-align:center;
+}
+
+form p.choose-email{
+  text-align:center;
+}
+form .inputs {
+  display: flex;
+  flex-direction: column;
+}
+form .inputs input[type='email'], input[type='password'],input[type='name'],input[type='username']{
+  padding: 15px;
+  border:none;
+  border-radius: 5px;
+  background-color:#f2f2f2;
+  outline:none;
+  margin-bottom: 15px;
+}
+form p.inscription{
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #878787;
+}
+form p.inscription span{
+  color: #FD2D01;
+}
+form button{
+  padding: 15px 25px;
+  border-radius: 5px;
+  border:none;
+  font-size: 15px;
+  color: #fff;
+  background-color: #FD2D01;
+  outline:none;
+  cursor:pointer;
+}
