@@ -26,8 +26,9 @@ exports.signup = (req, res, next) => {
 
 /* Connexion par mot de passe */
 exports.login = (req, res, next) => {
+  console.log(req.body)
   User.findOne({  where: {
-      username: req.body.username,
+      email: req.body.email,
     }, })
     .then(user => {
       if (!user) {
