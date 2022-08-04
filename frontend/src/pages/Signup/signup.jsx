@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect} from 'react';
 
-import './login.css'
+import '../Login/login.css'
 
 import axios from '../../api/axios';
 
-const LOGIN_URL = '/api/auth/login';
+const LOGIN_URL = '/api/auth/signup';
 
 const Login = () => {
     const userRef = useRef();
@@ -12,6 +12,8 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
+    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -21,15 +23,17 @@ const Login = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [email, pwd])
+    }, [email, pwd,username,name])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         //console.log(user,pwd);
 
-        axios.post(LOGIN_URL, { email : email , password : pwd})
+        axios.post(LOGIN_URL, { email : email , password : pwd, name : name, username : username})
         .then(reponse => {
             setEmail('');
+            setName('');
+            setUsername('');
             setPwd('');
             setSuccess(true);
             console.log(reponse.data)
@@ -40,9 +44,9 @@ const Login = () => {
                 //console.log(JSON.stringify(!err?.response));
                 setErrMsg('Pas de reponse serveur');
             } else if (error.response?.status === 401) {
-                setErrMsg('Email ou mot de passe incorrect');
+                setErrMsg('Données invalide');
             } else {
-                setErrMsg('Connection échoué');
+                setErrMsg('Email déjà utilisé');
             }
             errRef.current.focus();    
         })
@@ -52,17 +56,37 @@ const Login = () => {
         <>
             {success ? (
                 <section>
-                    <h1>Vous êtes connectez!</h1>
+                    <h1>Votre compte à été crée !</h1>
                     <br />
                     <p>
-                        <a href="/">Page d'accueil</a>
+                        <a href="/">Connection</a>
                     </p>
                 </section>
             ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Connectez vous</h1>
+                    <h1>Création du compte</h1>
                     <form onSubmit={handleSubmit}>
+                        <label htmlFor="name">Nom:</label>
+                        <input
+                            type="name"
+                            id="name"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                            required
+                        />
+                        <label htmlFor="username">Pseudo:</label>
+                        <input
+                            type="name"
+                            id="username"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setUsername(e.target.value)}
+                            value={username}
+                            required
+                        />
                         <label htmlFor="email">Email:</label>
                         <input
                             type="email"
@@ -73,7 +97,6 @@ const Login = () => {
                             value={email}
                             required
                         />
-
                         <label htmlFor="password">Mot de passe:</label>
                         <input
                             type="password"
@@ -82,13 +105,12 @@ const Login = () => {
                             value={pwd}
                             required
                         />
-                        <button>Connection</button>
+                        <button>Créer</button>
                     </form>
                     <p>
-                        Vous n'avez pas de compte ? Créer en un ici<br />
+                        Vous avez déjà un compte ?<br />
                         <span className="line">
-                            {/*put router link here*/}
-                            <a href="/signup">Créer un compte</a>
+                            <a href="/">Connection</a>
                         </span>
                     </p>
                 </section>

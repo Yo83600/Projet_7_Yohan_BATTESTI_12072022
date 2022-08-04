@@ -33,6 +33,7 @@ form {
 
 input[type="email"],
 input[type="password"],
+input[type="name"],
 button,
 textarea {
   font-family: 'Nunito', sans-serif;
@@ -101,7 +102,7 @@ p {
   text-align: center;
 }
 
-.line a{
+a{
   color: #FD2D01;
 }
 
