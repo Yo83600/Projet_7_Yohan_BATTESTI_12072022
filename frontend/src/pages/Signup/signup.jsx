@@ -1,5 +1,9 @@
 import { useRef, useState, useEffect} from 'react';
 
+import {ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 import '../Login/login.css'
 
 import axios from '../../api/axios';
@@ -16,6 +20,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+    const notify = () => toast("Création de compte réussie !");
 
     useEffect(() => {
         userRef.current.focus();
@@ -31,6 +36,7 @@ const Login = () => {
 
         axios.post(LOGIN_URL, { email : email , password : pwd, name : name, username : username})
         .then(reponse => {
+            notify()
             setEmail('');
             setName('');
             setUsername('');
@@ -56,6 +62,7 @@ const Login = () => {
         <>
             {success ? (
                 <section>
+                    <ToastContainer/>
                     <h1>Votre compte à été crée !</h1>
                     <br />
                     <p>
