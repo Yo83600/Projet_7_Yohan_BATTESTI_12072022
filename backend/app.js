@@ -1,19 +1,22 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-
+const path = require('path');
 
 const Db = require("./db/db.js");
 // const User = require("./models/user.js")
 const models = require("./models/")
 // console.log(db)
 
+/* Connexion à la base de donnée MySQL */
 Db.sync({force : false})
 .then((console.log("Bdd créé")))
 .catch(error => console.log(error))
 
 const userRoutes = require('./routes/users.js');
+const postsRoutes = require("./routes/posts.js");
 
+/* Middleware CORS - Ajout de headers à l'objet "response" */
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -23,12 +26,12 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-// app.use((req, res) => {
-//    res.json({ message: 'Votre requête a bien été reçue !' }); 
-// });
+/* Rendre le dossier "images" statique */
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
-
+/* Enregistrement des routes dans l'application */
 app.use('/api/auth', userRoutes);
+app.use('/api/posts', postsRoutes);
 
 
 module.exports = app;
