@@ -1,19 +1,21 @@
 body{
  background-color: #f5f5f5;
+  font-family: 'lato', sans-serif
 }
 
 section {
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 10px;
     width: 100%;
     max-width: 420px;
-    min-height: 400px;
+    min-height: 500px;
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.096);
 }
@@ -26,7 +28,7 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    flex-grow: 1;
+    flex-grow: 0.1;
     padding-bottom: 1rem;
 }
 
@@ -36,7 +38,6 @@ input[type="password"],
 input[type="name"],
 button,
 textarea {
-  font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 10px;
@@ -52,7 +53,9 @@ label
 
 button {
   margin-top: 50px;
+  padding: 10px;
   background-color: #FD2D01;
+  border-radius: 50px;
   cursor: pointer;
   color: white;
 }

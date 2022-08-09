@@ -93,7 +93,7 @@ const Login = () => {
                             value={pwd}
                             required
                         />
-                         <button >Connection</button>
+                         <button >Connexion</button>
                     </form>
                     <p>
                         Vous n'avez pas de compte ? Créer en un ici<br />

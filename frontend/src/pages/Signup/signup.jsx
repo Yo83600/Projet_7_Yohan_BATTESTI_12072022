@@ -66,7 +66,7 @@ const Login = () => {
                     <h1>Votre compte à été crée !</h1>
                     <br />
                     <p>
-                        <a href="/">Connection</a>
+                        <a href="/">Connexion</a>
                     </p>
                 </section>
             ) : (
@@ -117,7 +117,7 @@ const Login = () => {
                     <p>
                         Vous avez déjà un compte ?<br />
                         <span className="line">
-                            <a href="/">Connection</a>
+                            <a href="/">Connexion</a>
                         </span>
                     </p>
                 </section>
