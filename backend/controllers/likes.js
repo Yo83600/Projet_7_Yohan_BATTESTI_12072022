@@ -3,7 +3,6 @@ const db = require("../models"); // Récupération des modèles Sequelize
 // Ajout d'un like et suppression de ce dernier si il est déjà présent -----------------------------------
 
 exports.likePost = (req, res, next) => {
-  // async await necessaires !
    console.log(req.auth.userId , req.params ,req.params.id)
 
     const userLike = db.Like.findOne({
@@ -28,11 +27,11 @@ exports.likePost = (req, res, next) => {
         ).then( () => {
           res.status(200).json({ message: "Post disliké" });
         }).catch((error) => {
-
+            error
         });
         
       } else {
-        // Sinon le rajoute
+        // Sinon on le rajoute
         db.Like.create({
           userId: req.auth.userId,
           postId: req.params.id,
@@ -43,5 +42,4 @@ exports.likePost = (req, res, next) => {
     }).catch ( (error) => {
       res.status(500).json({ error });
     });
-  
 };
