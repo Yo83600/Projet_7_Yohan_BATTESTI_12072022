@@ -45,11 +45,9 @@ const Login = () => {
                  if (!error?.response) {
                 //console.log(JSON.stringify(!err?.response));
                 setErrMsg('Pas de reponse serveur');
-            } else if (error.response?.status === 400) {
-                setErrMsg('Email incorrect');
-            }
+            } 
             else if (error.response?.status === 401) {
-                setErrMsg('Mot de passe incorrect');
+                setErrMsg('Email ou mot de passe incorrect');
             } else {
                 setErrMsg('Connection échoué');
             }
