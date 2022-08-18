@@ -4,7 +4,7 @@ import {ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import '../Login/login.css'
+import '../Login/Login.css'
 
 import axios from '../../api/axios';
 
@@ -117,7 +117,7 @@ const Login = () => {
                     <p>
                         Vous avez déjà un compte ?<br />
                         <span className="line">
-                            <a href="/">Connexion</a>
+                            <a href="/login">Connexion</a>
                         </span>
                     </p>
                 </section>

@@ -1,10 +1,6 @@
 import { useRef, useState, useEffect} from 'react';
 
-import {ToastContainer, toast } from 'react-toastify';
-
-import 'react-toastify/dist/ReactToastify.css';
-
-import './login.css'
+import './Login.css'
 
 import axios from '../../api/axios';
 
@@ -17,8 +13,6 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
-    const notify = () => toast("Connection réussie !");
 
     useEffect(() => {
         userRef.current.focus();
@@ -30,14 +24,15 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        //console.log(user,pwd);
 
         axios.post(LOGIN_URL, { email : email , password : pwd})
         .then(reponse => {
-            notify();
             setEmail('');
             setPwd('');
-            setSuccess(true);
+            //Enregistre dans le local storage
+            localStorage.setItem('token' , reponse.data.token)
+            localStorage.setItem('user' , reponse.data.userId)
+            window.location = "/";
             console.log(reponse.data);
         })
         .catch( error => {
@@ -56,18 +51,6 @@ const Login = () => {
     }
 
     return (
-        <>
-            {success ? (
-                
-                <section>
-                    <ToastContainer />
-                    <h1>Vous êtes connectez!</h1>
-                    <br />
-                    <p>
-                        <a href="/">Page d'accueil</a>
-                    </p>
-                </section>
-            ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Connectez vous</h1>
@@ -102,9 +85,6 @@ const Login = () => {
                     </p>
                 </section>
             )}
-        </>
-    )
-}
 
 
 export default Login
