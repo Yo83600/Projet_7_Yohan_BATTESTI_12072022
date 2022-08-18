@@ -28,7 +28,8 @@ nav {
   border-radius: 50px;
   margin: 10px;
   padding: 5px 10px;
-  font-weight: 800;
+  font-family: 'Lato';
+  font-weight: bold;
   cursor: pointer;
   transition: 0.4s ease-out;
   margin-left: 50px;

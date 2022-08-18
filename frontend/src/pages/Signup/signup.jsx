@@ -61,7 +61,7 @@ const Login = () => {
     return (
         <>
             {success ? (
-                <section>
+                <section className='login'>
                     <ToastContainer/>
                     <h1>Votre compte à été crée !</h1>
                     <br />
@@ -70,7 +70,7 @@ const Login = () => {
                     </p>
                 </section>
             ) : (
-                <section>
+                <section className='login'>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Création du compte</h1>
                     <form onSubmit={handleSubmit}>
