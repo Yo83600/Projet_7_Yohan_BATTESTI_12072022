@@ -1,0 +1,25 @@
+.App-body {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+
+.App-comment {
+    margin: 20px;
+    padding : 20px;
+    background-color: #FFF;
+    border-radius: 30px;
+    width: 1000px;
+    transition: 200ms;
+}
+
+.App-comment:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 10px #e2e3e9;
+}
+
+.App-comment.image {
+  width: 100%;
+  border-radius: 25px;
+  border: solid 1px rgb(90, 90, 90);
+}
