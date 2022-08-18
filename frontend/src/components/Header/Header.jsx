@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
+import React, { useState} from "react";
 import styled from 'styled-components'
 import logo from '../../assets/icon-left-font.png'
 import './Header.css'
+const Swal = require('sweetalert2')
 
 const StyledLink = styled(Link)`
     padding: 15px;
@@ -11,15 +13,64 @@ const StyledLink = styled(Link)`
  
 function Header() {
     return (
-        <header>
-            <StyledLink to="/">
-                 <img id="logo" src={logo} alt="groupomania"/> 
-            </StyledLink>
-        <nav>
-                <StyledLink to="/freelances">Profils</StyledLink>
+         <nav>
+            <div className='nav-container'>
+                <div className="logo">
+          <StyledLink to="/">
+            <div className="logo">
+              <img src={logo} alt="groupomania"/> 
+            </div>
+          </StyledLink>
+        </div>
+            <div className="welcome">
+               <h3> Bonjour &nbsp;
+                {localStorage.getItem("name")} 😀 </h3>
+            <button className="button-disconnect" onClick={() => Disconnect() }>Déconnexion</button>
+               </div>
+            </div>
         </nav>
-        </header>
     )
 }
 
-export default Header
+function Guest() {
+    return (
+        <nav>
+         <StyledLink to="/">
+            <div className="logo">
+              <img src={logo} alt="groupomania"/> 
+            </div>
+          </StyledLink>
+        </nav>
+    )
+}
+
+function Disconnect() {
+  Swal.fire({
+    title: 'Êtes-vous sûr(e) ?',
+    text: "Une fois déconnecté(e), vous ne pourrez plus créer de post.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Me déconnecter'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deconnecté(e)'
+      )
+      localStorage.clear()
+      window.location.reload()
+    }
+  })
+}
+
+function Navigation() {
+  const isLoggedIn = localStorage.getItem('token');
+  let [userLogged] = useState(isLoggedIn);
+  if (userLogged) {
+    return < Header/>;
+  }
+    return <Guest/>;
+}
+
+export default Navigation

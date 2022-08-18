@@ -1,12 +1,39 @@
-header {
+nav {
     background-color: white;
 }
 
-#logo {
+.nav-container {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.logo img {
     width:300px;
     height: 50px;
-    padding-top: 50px;
+}
+
+.button-disconnect {
+  background-color: tomato;
+  color: #282c34;
+  border: solid 2px red;
+  border-radius: 50px;
+  margin: 10px;
+  padding: 5px 10px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.4s ease-out;
+  margin-left: 50px;
+}
+
+.welcome{
     display: flex;
-    margin-left: auto;
-    margin-right: auto
 }
