@@ -1,0 +1,45 @@
+.post {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+
+.App-post{
+  margin: 20px;
+  padding : 20px;
+  border-radius: 30px;
+  background-color: #5456581c;
+  width: 700px;
+}
+
+.post .input-form {
+  padding: 5px;
+  margin: 10px;
+}
+
+.input-form-comment {
+  padding: 5px;
+  margin: 10px;
+  height: 60px;
+  font-size: 20px;
+  width: 550px;
+  border-radius: 20px;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+
+.connexion-button{
+  background-color: tomato;
+  font-weight: bold;
+  color: #282c34;
+  font-family: 'Lato';
+  border-radius: 50px;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.4s ease-out;
+}
+
+
+
