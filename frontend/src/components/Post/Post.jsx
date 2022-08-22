@@ -63,7 +63,7 @@ const Post = ({token}) => {
                     </div>
                 </div>
                 <div className="error">{error}</div>
-                <button className="connexion-button">Créer le post !</button>
+                <button className="create-button">Créer le post !</button>
             </form>
         </div>
     );

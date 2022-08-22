@@ -1,8 +1,10 @@
 import React, { useState} from "react";
 import axios from "axios";
 
-  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-   import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import './Like.css'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 //import {useHistory} from 'react-router-dom';
 
 //const POST_URL = `/api/posts/${postId.postId}/like`;

@@ -29,12 +29,10 @@
   outline: none;
 }
 
-.connexion-button{
-  background-color: tomato;
+.create-button{
+  background-color: #FD2D01;
   font-weight: bold;
-  color: #282c34;
   font-family: 'Lato';
-  border-radius: 50px;
   margin: 10px;
   padding: 10px;
   cursor: pointer;
