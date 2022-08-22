@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import './Post.css'
+const Swal = require('sweetalert2')
 //import {useHistory} from 'react-router-dom';
 
 const POST_URL = '/api/posts/';
@@ -26,11 +27,25 @@ const Post = ({token}) => {
         }
         })
         .then(reponse => {
+           PostInfo()
            console.log(reponse.data)
         }) 
         .catch( error => {
             setError(error.reponse.data.error)
         })
+    }
+
+    function PostInfo() {
+    Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Votre publication à été ajouté',
+    showConfirmButton: false,
+    timer: 1500,
+    }).then((result) => {
+        if (result) {
+      window.location.reload()}
+    })
     }
  
     return(
@@ -55,59 +70,3 @@ const Post = ({token}) => {
 }
  
 export default Post;
-
-
-// import PropTypes from 'prop-types'
-// import styled from 'styled-components'
-
-// const PostLabel = styled.span`color: #FD2D01;
-//     font-size: 15px;
-//     font-weight: bold;
-//     padding-left: 15px;
-// `
-
-// const PostImage = styled.img`
-//     height: 40px;
-//     width: 40px;
-//     border-radius: 50%;
-// `
-
-// const PostWrapper = styled.div`
-//     margin: 20px;
-//     padding : 20px;
-//     background-color: #FFF;
-//     border-radius: 30px;
-//     width: 1000px;
-//     transition: 200ms;
-//     &:hover {
-//         cursor: pointer;
-//         box-shadow: 2px 2px 10px #e2e3e9;
-//     }
-// `
-// const PostProfil = styled.div`
-//     display:inline-flex;
-//     align-items:center;
-// `
-// const PostDate = styled.div`
-//     padding-left:800px;
-// `
- 
-// function Card({ label, title, picture }) {
-//     return (
-//         <PostWrapper>
-//             <PostProfil>
-//             <PostImage src={picture} alt="freelance" /> 
-//             <PostLabel>{label}</PostLabel>
-//             <PostDate>Il y a 5 jours</PostDate></PostProfil>
-//             <p>{title}</p>
-//         </PostWrapper>
-//     )
-// }
- 
-// Card.propTypes = {
-//     label: PropTypes.string,
-//     title: PropTypes.string,
-//     picture: PropTypes.string,
-// }
- 
-// export default Card
