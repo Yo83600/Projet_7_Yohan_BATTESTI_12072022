@@ -49,9 +49,10 @@ function Disconnect() {
     title: 'Êtes-vous sûr(e) ?',
     text: "Une fois déconnecté(e), vous ne pourrez plus créer de post.",
     icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
+    showDenyButton: true,
+    denyButtonText: 'Rester connecté',
+    confirmButtonColor: '#d33',
+    denyButtonColor: '#3085d6',
     confirmButtonText: 'Me déconnecter'
   }).then((result) => {
     if (result.isConfirmed) {
