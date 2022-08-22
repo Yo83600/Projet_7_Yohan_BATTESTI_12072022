@@ -4,6 +4,8 @@ import axios from '../../api/axios';
 
 import './Thread.css'
 
+import Like from "../../components/Like/Like";
+
 const POST_URL = '/api/posts/';
 
 const Thread = ({token}) => {
@@ -30,7 +32,6 @@ const Thread = ({token}) => {
     return (
         <div className="App-body">
             { listPost.map( (post, key) => {
-
                 return <div key={key} className="App-comment">
                     <div className="title">
                         <h3>{post.userId}</h3>
@@ -44,6 +45,7 @@ const Thread = ({token}) => {
                     <div className="date">
                         <p><em>Post créé le {post.createdAt}</em></p>
                     </div>
+                     <Like postId={post.id}/>
                 </div>
 
             }) }
