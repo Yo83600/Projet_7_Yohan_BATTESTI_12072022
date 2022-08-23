@@ -32,6 +32,7 @@ const Login = () => {
             //Enregistre dans le local storage
             localStorage.setItem('token' , reponse.data.token)
             localStorage.setItem('user' , reponse.data.userId)
+            localStorage.setItem("name", reponse.data.name)
             window.location = "/";
             console.log(reponse.data);
         })
@@ -51,7 +52,7 @@ const Login = () => {
     }
 
     return (
-                <section>
+                <section className='login'>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Connectez vous</h1>
                     <form onSubmit={handleSubmit}>
