@@ -9,30 +9,43 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 //const POST_URL = `/api/posts/${postId.postId}/like`;
  
-const Like = (postId) => {
+const Like = ({postId , likes, userId}) => {
    // let history = useHistory();
-    const [nbOfLikes, setNbOfLikes] = useState(0);
-    const [postLiked, setPostLiked] = useState(false);
-    console.log(postId.postId)
+    const nbrLike = likes.length > 0 ? likes.length : 0;
+    const [nbOfLikes, setNbOfLikes] = useState(nbrLike);
+    const [postLiked, setPostLiked] = useState('');
+    //console.log(postId)
+    // console.log(postId.postId)
  
     const undleSubmit = e => {
         e.preventDefault() // evite le rechargement
  
         const data = {
-        postId : postId.postId
+        userLike : localStorage.getItem("user"),
+        postId : postId
         };
         
-        console.log(data)
+        //console.log(data)
         //console.log("Bearer"+localStorage.getItem('token'))
         //Récupere tous les posts
-        axios.post(`/api/posts/${postId.postId}/like`,data, {
+        axios.post(`/api/posts/${postId}/like`,data, {
         headers: {
             'Authorization': "Bearer "+localStorage.getItem('token') 
         }
         })
         .then(reponse => {
-            setNbOfLikes('')
-            setPostLiked('')
+            // setNbOfLikes('')
+            // setPostLiked('')
+            const {message} = reponse.data;
+            if(message === "Post disliké"){
+              let newNbrLike = nbOfLikes - 1;
+              setNbOfLikes(newNbrLike)
+              setPostLiked(false)
+            }else{
+              let newNbrLike = nbOfLikes + 1;
+              setNbOfLikes(newNbrLike)
+              setPostLiked(true)
+            }
            console.log(reponse.data)
         
            //console.log(setNbOfLikes)

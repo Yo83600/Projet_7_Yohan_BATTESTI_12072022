@@ -1,16 +1,15 @@
 import React,{ useState,useEffect } from "react"
-
 import axios from '../../api/axios';
-
 import './Thread.css'
 
 import Like from "../../components/Like/Like";
+import Delete from "../DeletePost";
 
 const POST_URL = '/api/posts/';
 
 const Thread = ({token}) => {
 
-     const [listPost, setListPost] = useState([]);
+    const [listPost, setListPost] = useState([]);
     //console.log("thread" + token)
 
     useEffect ( () => {
@@ -34,10 +33,11 @@ const Thread = ({token}) => {
             { listPost.map( (post, key) => {
                 return <div key={key} className="App-comment">
                     <div className="title">
-                        <h3>{post.userId}</h3>
+                        <h3>{post.user.username}</h3>
+                        {post.userId === parseInt(localStorage.getItem("user")) && <Delete postId={post.id}/> }
                     </div>
                     <div className="body">
-                        {post.message}
+                       <p> {post.message} </p>
                     </div>
                     <br></br>
                     <img className="image" src={post.imageURL} alt=""/>
@@ -45,7 +45,7 @@ const Thread = ({token}) => {
                     <div className="date">
                         <p><em>Post créé le {post.createdAt}</em></p>
                     </div>
-                     <Like postId={post.id}/>
+                    <Like postId={post.id} likes={post.likes}/>
                 </div>
 
             }) }

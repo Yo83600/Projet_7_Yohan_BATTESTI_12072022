@@ -5,8 +5,10 @@
 }
 
 .App-body h3 {
-  border-bottom: 1px groove rgba(0, 0, 0, 0.226);
-  width: 100%;
+  display: grid;
+  justify-content: flex-start;
+  padding-left: 20px;
+  font-style: oblique;
   padding-bottom: 20px;
 }
 
@@ -31,4 +33,19 @@
 
 .App-comment .body {
   font-size: 20px;
+  overflow-wrap: anywhere;
 }
+
+.title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.delete-post{
+  color: red;
+  margin-right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
