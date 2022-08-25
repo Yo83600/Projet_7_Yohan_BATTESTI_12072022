@@ -40,6 +40,7 @@ exports.login = (req, res, next) => {
             return res.status(401).json({ error: 'Utilisateur ou mot de passe incorrect !' });
           }
           res.status(200).json({
+            name : user.username,
             userId: user.id,
             token: jwt.sign(
                 { userId: user.id},

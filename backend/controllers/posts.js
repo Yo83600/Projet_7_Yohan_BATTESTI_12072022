@@ -1,6 +1,8 @@
 const Post = require("../models/post"); // Récupération des modèles Sequelize
 const User = require("../models/user"); // Récupération des modèles Sequelize
+const Like = require("../models/like"); // Récupération des modèles Sequelize
 const fs = require("fs"); // FS est un module de Node permettant les opérations sur les fichiers
+
 
 // Création d'un post ---------------------------------------------------------------------------------
 exports.createPost = (req, res, next) => {
@@ -49,7 +51,10 @@ exports.createPost = (req, res, next) => {
 // Afficher tous les posts ---------------------------------------------------------------------------------
 exports.getAllPost = (req, res, next) => {
 	// on utilise la methode finAll pour récuperer tous les posts
-	Post.findAll().then(
+	Post.findAll({
+		include : [{model : User},{model : Like}],
+		order : [["createdAt" , "DESC"]]
+	}).then(
 		(posts) => {
 			res.status(200).json(posts);
 		}
