@@ -3,6 +3,7 @@ import React, { useState} from "react";
 import styled from 'styled-components'
 import logo from '../../assets/icon-left-font.png'
 import './Header.css'
+import Profil from '../../pages/Profil/Profil';
 const Swal = require('sweetalert2')
 
 const StyledLink = styled(Link)`
@@ -25,6 +26,7 @@ function Header() {
             <div className="welcome">
                <h3> Bonjour &nbsp;
                 {localStorage.getItem("name")} 😀 </h3>
+                <Profil/>
             <button className="button-disconnect" onClick={() => Disconnect() }>Déconnexion</button>
                </div>
             </div>

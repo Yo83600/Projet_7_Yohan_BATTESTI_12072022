@@ -1,0 +1,10 @@
+.profil {
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    font-size: 25px;
+}
+
+.profil a{
+    color: #000;
+}

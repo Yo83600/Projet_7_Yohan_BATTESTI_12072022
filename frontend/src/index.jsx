@@ -7,6 +7,7 @@ import Signup from './pages/Signup/Signup'
 import Header from './components/Header/Header'
 import Error from './components/Error/Error'
 import Home from './pages/Home/Home';
+import Profil from './pages/Profil/Profil';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,6 +20,8 @@ root.render(
           <Route exact path="/login" element={<Login />}>
           </Route>
           <Route exact path="/signup" element={<Signup />}>
+          </Route>
+          <Route exact path="/profil" element={<Profil />}>
           </Route>
           <Route path='*' element={<Error />}>
           </Route>
