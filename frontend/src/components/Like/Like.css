@@ -1,21 +1,12 @@
-.to-interact__buttons button{
-    padding: 10px;
+.to-interact__nb-of-likes span {
     cursor: pointer;
-}
-
-button.button__liked{
-    background-color: rgba(4, 0, 255, 0.308);
-    color: white;
-}
-
-.to-interact__buttons span{
-    padding-right: 10px;
 }
 
 .to-interact__nb-of-likes{
     display: flex;
     align-items: center;
-    font-size: 20px;
+    justify-content: center;
+    font-size: 25px;
     margin: 5px;
 }
 

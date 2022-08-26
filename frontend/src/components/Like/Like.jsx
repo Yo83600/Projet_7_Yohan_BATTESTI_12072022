@@ -58,20 +58,15 @@ const Like = ({postId , likes, userId}) => {
     return (
     <div className="to-interact">
       <div className="to-interact__nb-of-likes">
-        <FontAwesomeIcon icon={faThumbsUp} color={"#38618c"} />
-        <p className="to-interact__nb-of-likes--number">{nbOfLikes}</p>
-      </div>
-      <hr />
-      <div className="to-interact__buttons">
-        <button className={postLiked ? "button__liked" : null} onClick={undleSubmit}>
-          <span>
+          <span className={postLiked ? "button__liked" : null} onClick={undleSubmit}>
             <FontAwesomeIcon
               icon={faThumbsUp}
-              color={postLiked ? "#38618C" : "gray"}
+              color={postLiked ? "#38618C" : "grey"}
             />
           </span>
-          J'aime
-        </button>
+        <p className="to-interact__nb-of-likes--number">{nbOfLikes}</p>
+      </div>
+      <div className="to-interact__buttons">
       </div>
     </div>
      )}
