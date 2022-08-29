@@ -1,0 +1,60 @@
+.modal-profil #back-welcome {
+    position: absolute;
+    margin-top: 130px;
+    margin-left: 100px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+.modal-profil-content {
+    display: flex;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    height: 600px;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 25px;
+    background-color: white;
+}
+
+.modal-profil-content form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 0.1;
+}
+
+.modal-profil-content #save {
+  margin-top: 60px;
+  padding: 10px;
+  background-color: #FD2D01;
+  border-radius: 50px;
+  cursor: pointer;
+  color: white;
+}
+
+#name,#username,#email
+{
+  width: 300px;
+  height: 40px;
+  font-size: 20px;
+  background-color: rgba(128, 128, 128, 0.151);
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+  outline:none;
+}
+
+#email{
+  background-color: rgba(128, 128, 128, 0.568);
+}

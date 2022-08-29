@@ -1,18 +1,11 @@
 import React from "react";
+import EditProfil from "../../components/EditProfil/EditProfil";
 import './Profil.css'
-
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-
 
 function Profil() {
     return (
       <div className="profil">
-        <a href="/profil">
-        <FontAwesomeIcon
-          icon={faUser}
-        /></a>
+        <EditProfil/>
     </div>
   )
 }
