@@ -3,7 +3,8 @@ import axios from '../../api/axios';
 import './Thread.css'
 
 import Like from "../../components/Like/Like";
-import Delete from "../DeletePost";
+import Delete from "../DeletePost/DeletePost";
+import Update from "../UpdatePost/UpdatePost";
 
 const POST_URL = '/api/posts/';
 
@@ -33,14 +34,19 @@ const Thread = ({token}) => {
             { listPost.map( (post, key) => {
                 return <div key={key} className="App-comment">
                     <div className="title">
-                        <h3>{post.user.username}</h3>
+                        <div className="photoUser">
+                        <img src={post.imageURL} className="test" alt=""/>
+                        <h2>{post.user.username}</h2></div>
+                        <div className="icon-post">
+                        {post.userId === parseInt(localStorage.getItem("user")) && <Update postId={post.id}/> }
                         {post.userId === parseInt(localStorage.getItem("user")) && <Delete postId={post.id}/> }
+                        </div>
                     </div>
                     <div className="body">
                        <p> {post.message} </p>
                     </div>
                     <br></br>
-                    <img className="image" src={post.imageURL} alt=""/>
+                    <img src={post.imageURL} className= {post.imageURL ? "image" : null}  alt=""/>
                     <br></br>
                     <div className="date">
                         <p><em>Post créé le {post.createdAt}</em></p>

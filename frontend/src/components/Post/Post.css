@@ -7,37 +7,65 @@
 .App-post{
   margin: 20px;
   padding : 20px;
-  border-radius: 30px;
+  border-radius: 20px;
   background-color: #5456581c;
   width: 700px;
 }
 
 .post .input-form {
-  padding: 5px;
+  font-size: 16px;
+  width: 300px;
+  outline: none;
   margin: 10px;
 }
 
 .input-form-comment {
   padding: 5px;
   margin: 10px;
-  height: 60px;
+  height: 40px;
   font-size: 20px;
   width: 550px;
-  border-radius: 20px;
   text-align: center;
   border: none;
+  border-radius: 50px;
   outline: none;
 }
 
 .create-button{
-  background-color: #FD2D01;
-  font-weight: bold;
-  font-family: 'Lato';
-  margin: 10px;
+    background-image: linear-gradient(to right, #FD2D01 0%, #ED005E  51%, #B8318E  100%);
+    margin: 25px 0px 5px;
+    padding: 10px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+
+.create-button:hover{
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+::-webkit-file-upload-button{
+  color: white;
+  margin-right: 20px;
+  background-color: #54565894;
+  border-radius: 25px;
   padding: 10px;
   cursor: pointer;
-  transition: 0.4s ease-out;
-}
+  border: none;
+  outline: none;
+}         
+
+         
+
+
+
+
 
 
 

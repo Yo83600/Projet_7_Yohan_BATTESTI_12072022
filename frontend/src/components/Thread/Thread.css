@@ -14,10 +14,9 @@
 
 .App-comment {
     margin: 20px;
-    padding : 20px;
     background-color: #FFF;
-    border-radius: 30px;
-    max-width: 700px;
+    border-radius: 20px;
+    max-width: 740px;
     transition: 200ms;
 }
 
@@ -28,24 +27,39 @@
 .App-comment .image {
   width: 100%;
   height: 500px;
-  border-radius: 25px;
 }
 
 .App-comment .body {
   font-size: 20px;
   overflow-wrap: anywhere;
+  padding: 0px 20px 0px 20px;
 }
 
 .title {
   display: flex;
-  align-items: baseline;
+  padding: 20px 20px 0px 20px;
+  align-items: center;
   justify-content: space-between;
 }
 
-.delete-post{
-  color: red;
-  margin-right: 20px;
-  font-size: 20px;
-  cursor: pointer;
+.title h2 {
+  margin-left: 20px;
 }
+
+.icon-post {
+  display: flex;
+}
+
+.test{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.photoUser{
+  display: flex;
+  align-items: center;
+}
+
+
 

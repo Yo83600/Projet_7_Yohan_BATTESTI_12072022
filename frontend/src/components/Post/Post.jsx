@@ -19,7 +19,7 @@ const Post = ({token}) => {
         data.append('image', image);
         data.append('message', message);
  
-        //Récupere tous les posts
+        //Creer un post
         axios.post(POST_URL,data, {
         body: data,
         headers: {
@@ -37,7 +37,6 @@ const Post = ({token}) => {
 
     function PostInfo() {
     Swal.fire({
-    position: 'top-end',
     icon: 'success',
     title: 'Votre publication à été ajouté',
     showConfirmButton: false,
@@ -51,15 +50,16 @@ const Post = ({token}) => {
     return(
         <div className="post">
             <form onSubmit={e => undleSubmit(e)} className="App-post">
-                <h3>Poster un message :</h3>
                 <div className="App-loading-form">
                     <div>
-                        <input className="input-form-comment" placeholder="Inscrivez votre texte" width="200" maxLength="250" type="text" id="comment" name="comment" value={message} onChange={e => setMessage(e.target.value)}/>
+                        <input className="input-form-comment" placeholder="Quoi de neuf ?" width="200" maxLength="250" type="text" id="comment" name="comment" value={message} onChange={e => setMessage(e.target.value)} required/>
                     </div>
                     <div>
                         <label htmlFor="image">Image : </label>
                         <br></br>
+                        <div className="custom-file-upload">
                         <input className="input-form" type="file" id="image" name="image" onChange={e => setImage(e.target.files[0])}/>
+                        </div>
                     </div>
                 </div>
                 <div className="error">{error}</div>
