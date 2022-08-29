@@ -1,47 +1,46 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import React, { useState} from "react";
-import styled from 'styled-components'
-import logo from '../../assets/icon-left-font.png'
-import './Header.css'
-import Profil from '../../pages/Profil/Profil';
-const Swal = require('sweetalert2')
+import logo from '../../assets/icon-left-font.png';
+import './Header.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+const Swal = require('sweetalert2');
 
-const StyledLink = styled(Link)`
-    padding: 15px;
-    color: #8186a0;
-    text-decoration: none;
-    font-size: 18px;`
+
  
 function Header() {
     return (
-         <nav>
+          <nav>
             <div className='nav-container'>
+              <div className="logo">
+                <Link to="/">
                 <div className="logo">
-          <StyledLink to="/">
-            <div className="logo">
-              <img src={logo} alt="groupomania"/> 
+                  <img src={logo} alt="groupomania" />
+                </div>
+                </Link>
+              </div>
+              <div className="welcome">
+                <h3> Bonjour &nbsp; {localStorage.getItem("name")} 😀 </h3>
+                <div className="profil">
+                  <Link to="/profil">
+                      <FontAwesomeIcon icon={faUser} />
+                  </Link>
+                </div>
+                <button className="button-disconnect" onClick={()=> Disconnect() }>Déconnexion</button>
+              </div>
             </div>
-          </StyledLink>
-        </div>
-            <div className="welcome">
-               <h3> Bonjour &nbsp;
-                {localStorage.getItem("name")} 😀 </h3>
-                <Profil/>
-            <button className="button-disconnect" onClick={() => Disconnect() }>Déconnexion</button>
-               </div>
-            </div>
-        </nav>
+          </nav>
     )
 }
 
 function Guest() {
     return (
         <nav>
-         <StyledLink to="/">
+         <Link to="/">
             <div className="logo">
               <img src={logo} alt="groupomania"/> 
             </div>
-          </StyledLink>
+          </Link>
         </nav>
     )
 }
