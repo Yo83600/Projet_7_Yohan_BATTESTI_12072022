@@ -1,6 +1,6 @@
 .App-body {
   display: grid;
-  justify-content: center;
+  justify-items: center;
   text-align: center;
 }
 
@@ -16,6 +16,7 @@
     margin: 20px;
     background-color: #FFF;
     border-radius: 20px;
+    width: 100%;
     max-width: 740px;
     transition: 200ms;
 }
@@ -26,6 +27,7 @@
 
 .App-comment .image {
   width: 100%;
+  max-width: 740px;
   height: 500px;
 }
 
