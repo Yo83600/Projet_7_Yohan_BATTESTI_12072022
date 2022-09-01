@@ -95,7 +95,7 @@ exports.modifyUser = (req, res, next) => {
 			// modification du user avec la methode update
 			User.update({
 					name: req.body.name,
-          			username: req.body.username,
+          			firstname: req.body.firstname,
 					picture: newImageUrl
 				}, {
 					where: {
