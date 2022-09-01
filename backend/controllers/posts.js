@@ -88,48 +88,56 @@ exports.getOnePost = (req, res, next) => {
 };
 
 // Supprimer un post ---------------------------------------------------------------------------------
-exports.deletePost = (req, res, next) => {
-	Post.findOne({
+exports.deletePost = (req, res) => {
+	//identification du demandeur
+	User.findOne({
+			attributes: ['id', 'name', 'admin'],
 			where: {
-				id: req.params.id,
+				id: req.auth.userId,
 			},
 		})
-		.then((post) => {
-			if (post.userId == req.auth.userId) {
-				//verification des userId
+		.then(user => {
+			// on recherche le post par l'id
+			Post.findOne({
+					where: {
+						id: req.params.id
+					}
+				})
+				.then((post) => {
+					//Vérification que le demandeur est soit l'admin soit le poster 
+					if (post.userId == req.auth.userId || user.admin == true) {
 
-				if (post.imageURL !== null) {
-					// Si image présente on la supprime du répertoire, puis on supprime le post de la BDD
-					const filename = post.imageURL.split("/images/")[1];
-					fs.unlink(`images/${filename}`, () => {
-						Post.destroy({
-							where: {
-								id: post.id,
-							},
-						}, );
-						res.status(200).json({
-							message: "Post supprimé !"
-						});
-					});
-				} else { // Sinon on supprime uniquement le post
-					Post.destroy({
-						where: {
-							id: post.id
+						if (post.imageURL !== null) {
+							// Si image présente on la supprime du répertoire, puis on supprime le post de la BDD
+							const filename = post.imageURL.split("/images/")[1];
+							fs.unlink(`images/${filename}`, () => {
+								Post.destroy({
+									where: {
+										id: post.id,
+									},
+								}, );
+								res.status(200).json({
+									message: "Post supprimé !"
+								});
+							});
+						} else { // Sinon on supprime uniquement le post
+							Post.destroy({
+								where: {
+									id: post.id
+								}
+							}, );
+							res.status(200).json({
+								message: "Post supprimé !"
+							});
 						}
-					}, );
-					res.status(200).json({
-						message: "Post supprimé !"
-					});
-				}
-			} else {
-				res.status(401).json({
-					message: "Impossible de supprimer une publication que vous n'avez pas créér !"
-				});
-			}
+					} else {
+						res.status(401).json({
+							message: "Impossible de supprimer une publication que vous n'avez pas créér !"
+						})
+					}
+				}).catch(err => res.status(500).json(err))
 		})
-		.catch((error) => res.status(500).json({
-			error
-		}));
+		.catch(error => res.status(500).json(error));
 };
 
 // Modifier un post ---------------------------------------------------------------------------------
