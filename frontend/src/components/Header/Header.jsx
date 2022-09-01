@@ -20,7 +20,7 @@ function Header() {
                 </Link>
               </div>
               <div className="welcome">
-                <h3> Bonjour &nbsp; {localStorage.getItem("name")} 😀 </h3>
+                <h3> Bonjour, {localStorage.getItem("firstname")} {localStorage.getItem("name")} 😀 </h3>
                 <div className="profil">
                   <Link to="/profil">
                       <FontAwesomeIcon icon={faUser} />

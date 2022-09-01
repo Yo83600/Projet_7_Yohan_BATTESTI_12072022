@@ -16,7 +16,7 @@ const User = sequelize.define("user", {
       allowNull: false,
     },
 
-    username: {
+    firstname: {
       type: DataTypes.STRING(20),
       allowNull: false,
     },
@@ -33,6 +33,10 @@ const User = sequelize.define("user", {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+
+    picture: {
+      type: DataTypes.STRING,
     },
 
     admin: {

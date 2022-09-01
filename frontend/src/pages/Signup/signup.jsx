@@ -13,7 +13,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
     const [name, setName] = useState('');
-    const [username, setUsername] = useState('');
+    const [firstname, setFirstname] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -23,17 +23,17 @@ const Login = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [email, pwd,username,name])
+    }, [email, pwd,firstname,name])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         //console.log(user,pwd);
 
-        axios.post(LOGIN_URL, { email : email , password : pwd, name : name, username : username})
+        axios.post(LOGIN_URL, { email : email , password : pwd, name : name, firstname : firstname})
         .then(reponse => {
             setEmail('');
             setName('');
-            setUsername('');
+            setFirstname('');
             setPwd('');
             setSuccess(true);
             console.log(reponse.data)
@@ -77,14 +77,14 @@ const Login = () => {
                             value={name}
                             required
                         />
-                        <label htmlFor="username">Pseudo:</label>
+                        <label htmlFor="firstname">Prénom:</label>
                         <input
                             type="name"
-                            id="username"
+                            id="firstname"
                             ref={userRef}
                             autoComplete="off"
-                            onChange={(e) => setUsername(e.target.value)}
-                            value={username}
+                            onChange={(e) => setFirstname(e.target.value)}
+                            value={firstname}
                             required
                         />
                         <label htmlFor="email">Email:</label>

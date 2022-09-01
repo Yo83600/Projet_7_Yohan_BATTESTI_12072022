@@ -53,7 +53,7 @@ const Thread = ({ token }) => {
             <div className="title">
               <div className="photoUser">
                 <img src={post.user.picture} className="test" alt="" />
-                <h2>{post.user.username}</h2>
+                <h2>{post.user.firstname} {post.user.name}</h2>
               </div>
               <div className="icon-post">
                 {post.userId === parseInt(localStorage.getItem("user")) && (

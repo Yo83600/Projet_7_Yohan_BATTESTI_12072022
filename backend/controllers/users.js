@@ -1,6 +1,7 @@
 const User = require("../models/user"); // Récupération des modèles Sequelize
 const bcrypt = require("bcrypt"); // Bcrypt permet de crypter le password et de le comparer
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const fs = require("fs"); // FS est un module de Node permettant les opérations sur les fichiers
 
 // Gestion de la création d'un utilisateur et cryptage du mot de passe  ---------------------------------------------------------------
 exports.signup = (req, res, next) => {
@@ -10,10 +11,11 @@ exports.signup = (req, res, next) => {
     .then((hash) => {
       User.create({
         name: req.body.name,
-        username: req.body.username,
+        firstname: req.body.firstname,
         email: req.body.email,
         password: hash,
         admin: false,
+		picture : "http://localhost:4200/images/profil/random-user.png"
       })
 
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
@@ -40,7 +42,8 @@ exports.login = (req, res, next) => {
             return res.status(401).json({ error: 'Utilisateur ou mot de passe incorrect !' });
           }
           res.status(200).json({
-            name : user.username,
+            name : user.name,
+			firstname : user.firstname,
             userId: user.id,
             token: jwt.sign(
                 { userId: user.id},
@@ -56,7 +59,7 @@ exports.login = (req, res, next) => {
 
 // Afficher un user par son id ---------------------------------------------------------------------------------
 exports.getOneUser = (req, res, next) => {
-	// on recherche le post par son id
+	// on recherche le user par son id
 	User.findOne({
 		where: {
 			id: req.params.id,
@@ -76,6 +79,7 @@ exports.getOneUser = (req, res, next) => {
 
 // Modifier un user ---------------------------------------------------------------------------------
 exports.modifyUser = (req, res, next) => {
+	let newImageUrl;
 	User.findOne({
 		where: {
 			id: req.params.id
@@ -83,10 +87,16 @@ exports.modifyUser = (req, res, next) => {
 	}).then((user) => {
     console.log(req.auth.userId)
 		if (user.id == req.auth.userId) {
+			if (req.file) {
+				newImageUrl = `${req.protocol}://${req.get("host")}/images/profil/${
+      		req.file.filename}`;
+			}
+
 			// modification du user avec la methode update
 			User.update({
 					name: req.body.name,
-          username: req.body.username,
+          			username: req.body.username,
+					picture: newImageUrl
 				}, {
 					where: {
 						id: req.params.id
