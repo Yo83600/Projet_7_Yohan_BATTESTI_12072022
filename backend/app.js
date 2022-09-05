@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
+const helmet = require('helmet');
 const path = require('path');
 
 const Db = require("./db/db.js");
@@ -28,6 +29,9 @@ app.use(express.json());
 
 /* Rendre le dossier "images" statique */
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
+/* lancement de helmet */
+app.use(helmet());
 
 /* Enregistrement des routes dans l'application */
 app.use('/api/auth', userRoutes);
