@@ -142,52 +142,62 @@ exports.deletePost = (req, res) => {
 
 // Modifier un post ---------------------------------------------------------------------------------
 exports.modifyPost = (req, res, next) => {
-	let newImageUrl;
-	Post.findOne({
-		where: {
-			id: req.params.id
-		}
-	}).then((post) => {
-		if (post.userId == req.auth.userId) {
-			// Si nouvelle image celle ci est enregistrée
-			if (req.file) {
-				newImageUrl = `${req.protocol}://${req.get("host")}/images/${
-      		req.file.filename}`;
-			}
+    let newImageUrl;
+    User.findOne({
+            attributes: ['id', 'name', 'admin'],
+            where: {
+                id: req.auth.userId,
+            },
+        })
+        .then(user => {
+            Post.findOne({
+                where: {
+                    id: req.params.id
+                }
+            }).then((post) => {
+				//Vérification que le demandeur est soit l'admin soit le poster 
+                if (post.userId == req.auth.userId || user.admin == true) {
+                    // Si nouvelle image celle ci est enregistrée
+                    if (req.file) {
+                        newImageUrl = `${req.protocol}://${req.get("host")}/images/${
+      					req.file.filename}`;
+                    }
 
-			// Si nouvelle image, et image précédente existante, cette dernière est supprimée
-			if (newImageUrl && post.imageURL) {
-				const filename = post.imageURL.split("/images/")[1];
-				fs.unlink(`images/${filename}`, (error) => {
-					if (error) console.log(error);
-					else {
-						console.log(`Deleted file: images/${filename}`);
-					}
-				});
-			}
-			// modification du post avec la methode update
-			Post.update({
-					message: req.body.message,
-					imageURL: newImageUrl, // Si nouvelle image, son chemin est enregistré dans la BDD
-				}, {
-					where: {
-						id: req.params.id
-					},
-				})
-				.then(() => res.status(200).json({
-					message: "Post mis à jour !"
-				}))
-				.catch((error) => res.status(400).json({
-					error
-				}))
+                    // Si nouvelle image, et image précédente existante, cette dernière est supprimée
+                    if (newImageUrl && post.imageURL) {
+                        const filename = post.imageURL.split("/images/")[1];
+                        fs.unlink(`images/${filename}`, (error) => {
+                            if (error) console.log(error);
+                            else {
+                                console.log(`Deleted file: images/${filename}`);
+                            }
+                        });
+                    }
+                    // modification du post avec la methode update
+                    Post.update({
+                            message: req.body.message,
+                            imageURL: newImageUrl, // Si nouvelle image, son chemin est enregistré dans la BDD
+                        }, {
+                            where: {
+                                id: req.params.id
+                            },
+                        })
+                        .then(() => res.status(200).json({
+                            message: "Post mis à jour !"
+                        }))
+                        .catch((error) => res.status(400).json({
+                            error
+                        }))
 
-				.catch((error) => res.status(500).json({
-					error
-				}));
-		} else {
-			res.status(401).json({
-				message: "Impossible de modifier une publication que vous n'avez pas créér !"
-			});
-		}
-	})
+                        .catch((error) => res.status(500).json({
+                            error
+                        }));
+                } else {
+                    res.status(401).json({
+                        message: "Impossible de modifier une publication que vous n'avez pas créér !"
+                    });
+                }
+            }).catch(err => res.status(500).json(err))
+        })
+        .catch(error => res.status(500).json(error));
 };

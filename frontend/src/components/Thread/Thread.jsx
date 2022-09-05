@@ -56,9 +56,8 @@ const Thread = ({ token }) => {
                 <h2>{post.user.firstname} {post.user.name}</h2>
               </div>
               <div className="icon-post">
-                {post.userId === parseInt(localStorage.getItem("user")) && (
-                  <Update postId={post.id} />
-                )}
+                {(post.userId === parseInt(localStorage.getItem("user")) ||
+                  admin === true) && <Update postId={post.id} />}
                 {(post.userId === parseInt(localStorage.getItem("user")) ||
                   admin === true) && <Delete postId={post.id} />}
               </div>
