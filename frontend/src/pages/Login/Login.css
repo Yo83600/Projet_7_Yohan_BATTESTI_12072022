@@ -3,20 +3,24 @@ body{
 }
 
 .login {
-    display: flex;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 420px;
-    min-height: 500px;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.096);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-signup{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  min-height: 500px;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.096);
+  border-radius: 10px;
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 h1{
@@ -108,4 +112,9 @@ a{
   color: #FD2D01;
 }
 
+@media (max-width: 768px) { 
+ .login-signup{
+  max-width: 350px;
+}
+}
 

@@ -61,63 +61,67 @@ const Signup = () => {
         <>
             {success ? (
                 <section className='login'>
-                    <h1>Votre compte à été crée !</h1>
-                    <br />
-                    <p>
-                        <a href="/">Connexion</a>
-                    </p>
+                    <div className='login-signup'>
+                        <h1>Votre compte à été crée !</h1>
+                        <br />
+                        <p>
+                            <a href="/">Connexion</a>
+                        </p>
+                    </div>
                 </section>
             ) : (
                 <section className='login'>
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Création du compte</h1>
-                    <form onSubmit={signupSubmit}>
-                        <label htmlFor="name">Nom:</label>
-                        <input
-                            type="name"
-                            id="name"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setName(e.target.value)}
-                            value={name}
-                            required
-                        />
-                        <label htmlFor="firstname">Prénom:</label>
-                        <input
-                            type="name"
-                            id="firstname"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setFirstname(e.target.value)}
-                            value={firstname}
-                            required
-                        />
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                            required
-                        />
-                        <label htmlFor="password">Mot de passe:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                        />
-                        <button>Créer</button>
-                    </form>
-                    <p>
-                        Vous avez déjà un compte ?<br />
-                        <span className="line">
-                            <a href="/login">Connexion</a>
-                        </span>
-                    </p>
+                    <div className='login-signup'>
+                        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                        <h1>Création du compte</h1>
+                        <form onSubmit={signupSubmit}>
+                            <label htmlFor="name">Nom:</label>
+                            <input
+                                type="name"
+                                id="name"
+                                ref={userRef}
+                                autoComplete="off"
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
+                                required
+                            />
+                            <label htmlFor="firstname">Prénom:</label>
+                            <input
+                                type="name"
+                                id="firstname"
+                                ref={userRef}
+                                autoComplete="off"
+                                onChange={(e) => setFirstname(e.target.value)}
+                                value={firstname}
+                                required
+                            />
+                            <label htmlFor="email">Email:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                ref={userRef}
+                                autoComplete="off"
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
+                                required
+                            />
+                            <label htmlFor="password">Mot de passe:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                onChange={(e) => setPwd(e.target.value)}
+                                value={pwd}
+                                required
+                            />
+                            <button>Créer</button>
+                        </form>
+                        <p>
+                            Vous avez déjà un compte ?<br />
+                            <span className="line">
+                                <a href="/login">Connexion</a>
+                            </span>
+                        </p>
+                    </div>
                 </section>
             )}
         </>
