@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import Post from "../../components/Post/Post";
 import Thread from '../../components/Thread/Thread'
 
-function Home() {
+const Home = () => {
     
     const token = localStorage.getItem('token');
     console.log(token)

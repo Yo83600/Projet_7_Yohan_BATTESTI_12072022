@@ -3,16 +3,16 @@ import { Navigate } from "react-router-dom";
 import EditProfil from "../../components/EditProfil/EditProfil";
 import './Profil.css'
 
-function Profil() {
+const Profil = () => {
 
-    const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
-    if(!token){
-        return <Navigate to="/login"/>
-    }
-    return (
-      <div className="profil">
-        <EditProfil/>
+  if(!token){
+    return <Navigate to="/login"/>
+  }
+  return (
+    <div>
+      <EditProfil/>
     </div>
   )
 }

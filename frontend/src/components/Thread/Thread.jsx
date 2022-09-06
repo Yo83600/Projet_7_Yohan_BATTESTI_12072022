@@ -5,7 +5,7 @@ import "./Thread.css";
 import Like from "../../components/Like/Like";
 import Delete from "../DeletePost/DeletePost";
 import Update from "../UpdatePost/UpdatePost";
-import { dateParser } from "../Utils";
+import dateParser from "../Utils";
 
 const Thread = ({ token }) => {
   const [listPost, setListPost] = useState([]);

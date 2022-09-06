@@ -1,4 +1,5 @@
-export const dateParser = (num) => {
+// fonction pour modifier le format de la date
+const dateParser = (num) => {
   let options = {
     hour: "2-digit",
     minute: "2-digit",
@@ -15,4 +16,6 @@ export const dateParser = (num) => {
 
   return date.toString();
 };
+
+export default dateParser
 
