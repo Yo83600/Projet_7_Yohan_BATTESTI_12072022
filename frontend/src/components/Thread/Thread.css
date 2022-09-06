@@ -63,5 +63,11 @@
   align-items: center;
 }
 
+@media (max-width: 768px) { 
+  .App-comment .image {
+  height: 350px;
+}
+}
+
 
 
