@@ -1,12 +1,9 @@
 import { useRef, useState, useEffect} from 'react';
-
+// CSS de login car html pareil
 import '../Login/Login.css'
-
 import axios from '../../api/axios';
 
-const LOGIN_URL = '/api/auth/signup';
-
-const Login = () => {
+const Signup = () => {
     const userRef = useRef();
     const errRef = useRef();
 
@@ -17,19 +14,28 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+    // focus de l'element
     useEffect(() => {
         userRef.current.focus();
     }, [])
 
+    // Application du message d'erreur 
     useEffect(() => {
         setErrMsg('');
     }, [email, pwd,firstname,name])
 
-    const handleSubmit = async (e) => {
+    // redirection vers la page d'accueil si token 
+    const token = localStorage.getItem('token');
+    if(token){
+        window.location = "/"  
+    }
+
+    const signupSubmit = async (e) => {
         e.preventDefault();
         //console.log(user,pwd);
 
-        axios.post(LOGIN_URL, { email : email , password : pwd, name : name, firstname : firstname})
+        // methode post pour se creer un compte
+        axios.post('/api/auth/signup', { email : email , password : pwd, name : name, firstname : firstname})
         .then(reponse => {
             setEmail('');
             setName('');
@@ -40,8 +46,7 @@ const Login = () => {
         })
         .catch( error => {
             console.log(error.response.data)
-                 if (!error?.response) {
-                //console.log(JSON.stringify(!err?.response));
+            if (!error?.response) {
                 setErrMsg('Pas de reponse serveur');
             } else if (error.response?.status === 401) {
                 setErrMsg('Données invalide');
@@ -66,7 +71,7 @@ const Login = () => {
                 <section className='login'>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Création du compte</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={signupSubmit}>
                         <label htmlFor="name">Nom:</label>
                         <input
                             type="name"
@@ -119,5 +124,4 @@ const Login = () => {
     )
 }
 
-
-export default Login
+export default Signup
