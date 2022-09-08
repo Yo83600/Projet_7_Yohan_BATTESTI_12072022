@@ -15,7 +15,7 @@ exports.signup = (req, res, next) => {
         email: req.body.email,
         password: hash,
         admin: false,
-		picture : "http://localhost:4200/images/profil/random-user.png"
+		picture : "http://localhost:4200/images/profilDefault/random-user.png"
       })
 
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
@@ -79,7 +79,7 @@ exports.getOneUser = (req, res, next) => {
 
 // Modifier un user ---------------------------------------------------------------------------------
 exports.modifyUser = (req, res, next) => {
-	let newImageUrl;
+	let newPicture;
 	User.findOne({
 		where: {
 			id: req.params.id
@@ -88,15 +88,24 @@ exports.modifyUser = (req, res, next) => {
     console.log(req.auth.userId)
 		if (user.id == req.auth.userId) {
 			if (req.file) {
-				newImageUrl = `${req.protocol}://${req.get("host")}/images/profil/${
+				newPicture = `${req.protocol}://${req.get("host")}/images/profil/${
       		req.file.filename}`;
 			}
-
+			// Si nouvelle image, et image précédente existante, cette dernière est supprimée
+            if (newPicture && user.picture) {
+                const filename = user.picture.split("/images/profil/")[1];
+                    fs.unlink(`images/profil/${filename}`, (error) => {
+                        if (error) console.log(error);
+                        else {
+                            console.log(`Deleted file: images/profil/${filename}`);
+                        }
+                });
+            }
 			// modification du user avec la methode update
 			User.update({
 					name: req.body.name,
           			firstname: req.body.firstname,
-					picture: newImageUrl
+					picture: newPicture
 				}, {
 					where: {
 						id: req.params.id
