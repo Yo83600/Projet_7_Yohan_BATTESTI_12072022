@@ -21,14 +21,15 @@
 }
 
 .input-form-comment {
-  padding: 5px;
+  padding: 10px;
   margin: 10px;
-  height: 40px;
+  height: 30px;
   font-size: 20px;
   width: 550px;
   text-align: center;
   font-family: lato;
   border: none;
+  resize: none;
   border-radius: 25px;
   outline: none;
 }

@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import './Post.css'
-const Swal = require('sweetalert2')
-//import {useHistory} from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const POST_URL = '/api/posts/';
  
 const Post = ({token}) => {
-   // let history = useHistory();
     const [message, setMessage] = useState("")
     const [image, setImage] = useState()
+    const [picture, setPicture] = useState("")
     const [error, setError] = useState("")
  
-    const undleSubmit = e => {
+    const postSubmit = e => {
         e.preventDefault() // evite le rechargement
- 
+        
+        // data du post
         const data = new FormData();
         data.append('image', image);
         data.append('message', message);
@@ -35,7 +35,27 @@ const Post = ({token}) => {
         })
     }
 
-    function PostInfo() {
+    // variable pour recuperer le userId dans le localstorage
+    const userID = localStorage.getItem("user");
+
+    // récupération du userId pour savoir si c'est un admin
+    useEffect(() => {
+        //Récupere le userId
+        axios.get(`/api/auth/${userID}`, {
+            headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        })
+        .then((reponse) => {
+            setPicture(reponse.data.picture);
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+    }, [userID]);
+    
+    // popup qui affiche un message pour l'utilisateur
+    const PostInfo = () => {
     Swal.fire({
     icon: 'success',
     title: 'Votre publication à été ajouté',
@@ -49,10 +69,13 @@ const Post = ({token}) => {
  
     return(
         <div className="post">
-            <form onSubmit={e => undleSubmit(e)} className="App-post">
+            <form onSubmit={e => postSubmit(e)} className="App-post">
                 <div className="App-loading-form">
                     <div>
-                        <input className="input-form-comment" placeholder="Quoi de neuf ?" width="200" maxLength="250" type="text" id="comment" name="comment" value={message} onChange={e => setMessage(e.target.value)} required/>
+                    <img src={picture} className="picture-profil" alt="" />
+                    </div>
+                    <div>
+                        <textarea className="input-form-comment" placeholder="Quoi de neuf ?" width="200" maxLength="250" type="text" id="comment" name="comment" value={message} onChange={e => setMessage(e.target.value)} required/>
                     </div>
                     <div>
                         <label htmlFor="image">Image : </label>

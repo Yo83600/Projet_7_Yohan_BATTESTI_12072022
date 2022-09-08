@@ -52,7 +52,7 @@ const Thread = ({ token }) => {
           <div key={key} className="App-comment">
             <div className="title">
               <div className="photoUser">
-                <img src={post.user.picture} className="test" alt="" />
+                <img src={post.user.picture} className="picture-profil" alt="post" />
                 <h2>{post.user.firstname} {post.user.name}</h2>
               </div>
               <div className="icon-post">
