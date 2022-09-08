@@ -6,21 +6,25 @@
     text-decoration: none;
 }
 
+.modal-profil{
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+}
+
 
 .modal-profil-content {
     display: flex;
     position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
     flex-direction: column;
     flex-wrap: wrap;
     font-size: 20px;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     border-radius: 10px;
     width: 100%;
     max-width: 500px;
-    height: 600px;
+    height: 700px;
     padding: 20px;
     margin-top: 30px;
     border-radius: 25px;
@@ -43,7 +47,7 @@
   color: white;
 }
 
-#name,#username,#email
+#name-profil,#firstname-profil,#email-profil
 {
   width: 300px;
   height: 40px;
@@ -55,6 +59,32 @@
   outline:none;
 }
 
-#email{
+#email-profil{
   background-color: rgba(128, 128, 128, 0.568);
+}
+
+.edit-picture{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.add-picture{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) { 
+  .modal-profil-content {
+    width: 350px;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .modal-profil #back-welcome {
+    margin: 30px 0px 20px 0px;
+    z-index: 1;
+  }
 }

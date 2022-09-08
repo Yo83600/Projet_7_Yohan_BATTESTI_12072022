@@ -1,17 +1,17 @@
 import './EditProfil.css'
 import React, {useState, useEffect } from "react";
 import axios from "axios";
-const Swal = require('sweetalert2')
+import Swal from "sweetalert2";
 
 const EditProfil = () => {
-  // Fonction Delete au click
     const [ Name,setName] = useState("");
-    const [ Username,setUsername] = useState("");
+    const [ Firstname,setFirstname] = useState("");
     const [ Email,setEmail] = useState("");
-    //const RefMessage = useRef();
+    const [ Picture,setPicture] = useState("");
+
     const userID = localStorage.getItem("user")
     useEffect ( () => {
-    //Récupere tous les posts
+    //Récupere les info de l'utilisateur connecté
     axios.get(`/api/auth/${userID}`,{
         headers:{
 					'Authorization': "Bearer " + localStorage.getItem('token')
@@ -19,21 +19,28 @@ const EditProfil = () => {
         })
         .then(reponse => {
 			console.log(reponse.data)
-			console.log(reponse.data.username)
-            setUsername(reponse.data.username)
+			console.log(reponse.data.firstname)
+            setFirstname(reponse.data.firstname)
             setName(reponse.data.name)
             setEmail(reponse.data.email)
+            setPicture(reponse.data.picture)
         }) 
         .catch( error => {
             console.log(error)
         })
     },[userID])
 
-      const undleSubmit = e => {
-        e.preventDefault() // evite le rechargement
+      const editSubmit = e => {
+        e.preventDefault() 
+
+        // data du user
+        const data = new FormData();
+        data.append("name", Name);
+        data.append("firstname", Firstname);
+        data.append("profil_image", Picture);
  
-        //Creer un post
-        axios.put(`/api/auth/${userID}`,{ name : Name, username : Username}, {
+        //Modifier un user
+        axios.put(`/api/auth/${userID}`, data, {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token') 
         }
@@ -41,12 +48,15 @@ const EditProfil = () => {
         .then(reponse => {
           console.log(reponse.data);
           localStorage.setItem("name", Name)
+          localStorage.setItem("firstname", Firstname)
           UpdateInfo()
         }) 
         .catch( error => {
+          console.log(error)
         })
     }
 
+    // information de modification du user
     const UpdateInfo = () => {
     Swal.fire({
     icon: 'success',
@@ -55,43 +65,47 @@ const EditProfil = () => {
     timer: 1500,
     }).then((result) => {
         if (result) {
-      window.location.reload()}
+      window.location = "/"}
     })
     }
 
     return (
-           <div className="modal-profil">
+        <div className="modal-profil">
             <a href='/' id="back-welcome">⬅ Retour</a>
                 <div className="modal-profil-content">
 					<h2> Modifier votre profil</h2>
-					<form onSubmit={e => undleSubmit(e)}>
-						<label htmlFor="name">Name:</label>
+					<form onSubmit={e => editSubmit(e)}>
+            <div className='add-picture'>
+            <img src={Picture} className="edit-picture" alt="profil"/>
+            <input className="input-form" type="file" id="image" name="profil_image" onChange={e => setPicture(e.target.files[0])}/>
+            </div>
+						<label htmlFor="name">Nom:</label>
 						<input
 							type="text"
-							id="name"
-                            value={Name}
-                            onChange={e => setName(e.target.value)}
+							id="name-profil"
+              value={Name}
+              onChange={e => setName(e.target.value)}
 							autoComplete="off" 
-                        />
-                        <label htmlFor="username">Username:</label>
+            />
+            <label htmlFor="firstname">Prénom:</label>
 						<input
 							type="text"
-							id="username"
-                            value={Username}
-                            onChange={e => setUsername(e.target.value)}
+							id="firstname-profil"
+              value={Firstname}
+              onChange={e => setFirstname(e.target.value)}
 							autoComplete="off" 
-                        />
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            defaultValue={Email}
-                            disabled
-                        />
+              />
+              <label htmlFor="email">Email:</label>
+              <input
+              type="email"
+              id="email-profil"
+              defaultValue={Email}
+              disabled
+              />
 						<button id="save">Modifier</button>
 					</form>
 				</div>
-		</div>
+		  </div>
     )
 }
  
