@@ -17,7 +17,7 @@ exports.createPost = (req, res, next) => {
 	// Ajouter une image
 	let imageUrl;
 	if (req.file) {
-		imageUrl = `${req.protocol}://${req.get("host")}/images/${
+		imageUrl = `${req.protocol}://${req.get("host")}/images/posts/${
           req.file.filename
         }`;
 	} else {
@@ -109,8 +109,8 @@ exports.deletePost = (req, res) => {
 
 						if (post.imageURL !== null) {
 							// Si image présente on la supprime du répertoire, puis on supprime le post de la BDD
-							const filename = post.imageURL.split("/images/")[1];
-							fs.unlink(`images/${filename}`, () => {
+							const filename = post.imageURL.split("/images/posts/")[1];
+							fs.unlink(`images/posts/${filename}`, () => {
 								Post.destroy({
 									where: {
 										id: post.id,
@@ -159,17 +159,17 @@ exports.modifyPost = (req, res, next) => {
                 if (post.userId == req.auth.userId || user.admin == true) {
                     // Si nouvelle image celle ci est enregistrée
                     if (req.file) {
-                        newImageUrl = `${req.protocol}://${req.get("host")}/images/${
+                        newImageUrl = `${req.protocol}://${req.get("host")}/images/posts/${
       					req.file.filename}`;
                     }
 
                     // Si nouvelle image, et image précédente existante, cette dernière est supprimée
                     if (newImageUrl && post.imageURL) {
-                        const filename = post.imageURL.split("/images/")[1];
-                        fs.unlink(`images/${filename}`, (error) => {
+                        const filename = post.imageURL.split("/images/posts/")[1];
+                        fs.unlink(`images/posts/${filename}`, (error) => {
                             if (error) console.log(error);
                             else {
-                                console.log(`Deleted file: images/${filename}`);
+                                console.log(`Deleted file: images/posts/${filename}`);
                             }
                         });
                     }

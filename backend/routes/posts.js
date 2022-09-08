@@ -8,9 +8,9 @@ const auth = require('../middleware/auth')
 
 // différentes routes pour les posts 
 
-router.post('/',auth,multer, postCrtl.createPost);
+router.post('/',auth,multer.single("image"), postCrtl.createPost);
 
-router.put('/:id',auth,multer, postCrtl.modifyPost);
+router.put('/:id',auth,multer.single("image"), postCrtl.modifyPost);
 
 router.delete('/:id',auth, postCrtl.deletePost);
 
