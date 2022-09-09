@@ -26,7 +26,7 @@ const Header = () => {
                   </Link>
                 </div>
                 <div className='button-disconnect'>
-                <FontAwesomeIcon icon={faRightFromBracket}  onClick={()=> Disconnect() }/>
+                  <FontAwesomeIcon icon={faRightFromBracket}  onClick={()=> Disconnect() }/>
                 </div>
               </div>
             </div>

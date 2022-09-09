@@ -1,11 +1,11 @@
 .modal, .overlay {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: fixed;
-    cursor:default;
-    color: black;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  cursor:default;
+  color: black;
 }
 
 .update-post{
@@ -16,41 +16,44 @@
 }
 
 .overlay {
-    background: rgba(83, 81, 81, 0.767);
+  background: rgba(83, 81, 81, 0.767);
 }
 
 .modal h2 {
-    color: #FD2D01;
+  color: #FD2D01;
+  margin-left: 0;
 }
 
 .modal-content {
-    display: flex;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    flex-direction: column;
-    flex-wrap: wrap;
-    font-size: 20px;
-    align-items: center;
-    justify-content: flex-start;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 420px;
-    min-height: 500px;
-    padding: 1rem;
-    background-color: white;
+  display: flex;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 420px;
+  min-height: 500px;
+  padding: 1rem;
+  background-color: white;
 }
 
 .modal-content form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    flex-grow: 0.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-grow: 0.1;
 }
 
 .modal-content #save {
-  margin-top: 60px;
+  margin-top: 50px;
   padding: 10px;
+  width: 250px;
   background-color: #FD2D01;
   border-radius: 50px;
   cursor: pointer;
@@ -58,11 +61,11 @@
 }
 
 .close-modal {
-    position: absolute;
-    cursor: pointer;
-    top: 10px;
-    right: 10px;
-    padding: 5px 7px;
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
 }
 
 .modal-content .close-modal {
@@ -73,6 +76,12 @@
   color: black;
 }
 
+#output-image{
+  width: 200px;
+  max-height: 150px;
+  margin-top: 20px;
+}
+
 #message
 {
   width: 300px;
@@ -80,13 +89,25 @@
   font-size: 20px;
   text-align: center;
   background-color: rgba(128, 128, 128, 0.151);
-  border-radius: 10px;
   border: none;
   margin-top: 10px;
+  resize: none;
   outline:none;
 }
 
 .input-image{
-    padding-top: 50px;
+  padding-top: 30px;
+}
+
+@media (max-width: 768px) { 
+  .modal-content {
+  font-size: 15px;
+  width: 300px;
+  }
+
+  #message{
+  width: 250px;
+  height: 100px;
+  } 
 }
 

@@ -66,23 +66,54 @@ const Post = ({token}) => {
       window.location.reload()}
     })
     }
+
+    // affichage de la photo dans le input
+    const loadFile = function(e) {
+        var reader = new FileReader();
+        reader.onload = function(){
+        var output = document.querySelector(".output");
+        output.src = reader.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    };
  
     return(
         <div className="post">
             <form onSubmit={e => postSubmit(e)} className="App-post">
                 <div className="App-loading-form">
                     <div>
-                    <img src={picture} className="picture-profil" alt="" />
+                    <img src={picture} className="picture-profil" alt="profil" />
                     </div>
                     <div>
-                        <textarea className="input-form-comment" placeholder="Quoi de neuf ?" width="200" maxLength="250" type="text" id="comment" name="comment" value={message} onChange={e => setMessage(e.target.value)} required/>
+                        <textarea 
+                            className="input-form-comment" 
+                            placeholder="Quoi de neuf ?" 
+                            width="200" 
+                            maxLength="250" 
+                            type="text" 
+                            id="comment" 
+                            name="comment" 
+                            value={message} 
+                            onChange={e => setMessage(e.target.value)} 
+                            required
+                        />
                     </div>
                     <div>
                         <label htmlFor="image">Image : </label>
-                        <br></br>
                         <div className="custom-file-upload">
-                        <input className="input-form" type="file" id="image" name="image" onChange={e => setImage(e.target.files[0])}/>
+                            <input 
+                                className="input-form" 
+                                type="file" 
+                                id="image" 
+                                name="image" 
+                                onChange={e => {
+                                    setImage(e.target.files[0])
+                                    loadFile(e)
+                                }}
+                                onDrop = {e => loadFile(e)}
+                            />
                         </div>
+                        <img className="output" alt=""/>
                     </div>
                 </div>
                 <div className="error">{error}</div>

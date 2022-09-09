@@ -54,6 +54,12 @@
   text-decoration: none;
 }
 
+.output{
+  width: 200px;
+  max-height: 150px;
+  margin-top: 10px;
+}
+
 ::-webkit-file-upload-button{
   color: white;
   margin-right: 20px;

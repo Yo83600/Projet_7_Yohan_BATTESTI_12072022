@@ -22,10 +22,12 @@ const Update = ({ postId }) => {
       setMessage(reponse.data.message);
       setImage(reponse.data.imageURL);
     })
-    .catch((error) => {});
+    .catch((error) => {
+      console.log(error)
+    });
   },[postId]);
 
-  const undleSubmit = (e) => {
+  const updateSubmit = (e) => {
     e.preventDefault(); // evite le rechargement
 
     // data des posts
@@ -74,6 +76,16 @@ const Update = ({ postId }) => {
     }
   };
 
+  // affichage de la photo dans le input
+  const loadFile = function(e) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.querySelector("#output-image");
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
   return (
     <>
       {" "}
@@ -85,7 +97,7 @@ const Update = ({ postId }) => {
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
             <h2> Modifier votre post</h2>
-            <form onSubmit={(e) => undleSubmit(e)}>
+            <form onSubmit={(e) => updateSubmit(e)}>
               <label htmlFor="message">Message:</label>
               <textarea
                 type="text"
@@ -101,8 +113,12 @@ const Update = ({ postId }) => {
                 type="file"
                 id="image"
                 name="image"
-                onChange={(e) => setImage(e.target.files[0])}
+                onChange={(e) => {
+                  setImage(e.target.files[0])
+                  loadFile(e)
+                }}
               />
+              <img id="output-image" alt=""/>
               <button id="save">Modifier</button>
             </form>
             <button className="close-modal" onClick={toggleModal}>
