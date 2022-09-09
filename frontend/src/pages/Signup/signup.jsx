@@ -48,10 +48,12 @@ const Signup = () => {
             console.log(error.response.data)
             if (!error?.response) {
                 setErrMsg('Pas de reponse serveur');
-            } else if (error.response?.status === 401) {
-                setErrMsg('Données invalide');
-            } else {
+            } else if (error.response?.status === 400) {
                 setErrMsg('Email déjà utilisé');
+            } else if (error.response?.status === 401) {
+                setErrMsg('Le Mot de passe doit faire 10 caractère au moins, avec une maj, une min et un chiffre au moins');
+            } else {
+                setErrMsg('Données invalide');
             }
             errRef.current.focus();    
         })
