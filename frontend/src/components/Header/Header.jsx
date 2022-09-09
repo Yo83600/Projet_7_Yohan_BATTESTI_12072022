@@ -3,7 +3,7 @@ import React, { useState} from "react";
 import logo from '../../assets/icon-left-font.png';
 import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUserGear,faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 // structuration de la navbar
@@ -22,10 +22,12 @@ const Header = () => {
                 <h3> Bonjour, {localStorage.getItem("firstname")} {localStorage.getItem("name")} 😀 </h3>
                 <div className="profil">
                   <Link to="/profil">
-                      <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUserGear} />
                   </Link>
                 </div>
-                <button className="button-disconnect" onClick={()=> Disconnect() }>Déconnexion</button>
+                <div className='button-disconnect'>
+                <FontAwesomeIcon icon={faRightFromBracket}  onClick={()=> Disconnect() }/>
+                </div>
               </div>
             </div>
           </nav>
