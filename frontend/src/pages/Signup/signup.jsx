@@ -115,7 +115,10 @@ const Signup = () => {
                                 value={pwd}
                                 required
                             />
-                            <button>Créer</button>
+                            <div className="password-infos">
+                                <p>Le Mot de passe doit faire 10 caractère au moins, avec une maj, une min et un chiffre au moins</p>
+                            </div>
+                            <button className='button-signup'>Créer</button>
                         </form>
                         <p>
                             Vous avez déjà un compte ?<br />

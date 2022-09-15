@@ -55,7 +55,7 @@ label
 }
 
 .login button {
-  margin-top: 50px;
+  margin-top: 40px;
   padding: 10px;
   background-color: #FD2D01;
   border-radius: 50px;
@@ -110,6 +110,11 @@ section p {
 
 a{
   color: #FD2D01;
+}
+
+.password-infos{
+  width: 280px;
+  font-size: 12px;
 }
 
 @media (max-width: 768px) { 
