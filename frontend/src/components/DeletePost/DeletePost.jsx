@@ -18,9 +18,11 @@ const Delete = ({postId}) => {
 				if (reponse.status === 200) document.location.reload();
 				console.log(reponse.data)
 			})
-			.catch(error => {})
+			.catch(error => {
+				console.log(error)
+			})
 	}
-  // Popup pour confirmer la suppresion du post
+  	// Popup pour confirmer la suppresion du post
 	const DeleteAlerte = () => {
 		Swal.fire({
 			title: 'Êtes-vous sûr(e) ?',
