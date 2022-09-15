@@ -82,9 +82,4 @@
     background-color: transparent;
     padding: 0;
   }
-
-  .modal-profil #back-welcome {
-    margin: 30px 0px 20px 0px;
-    z-index: 1;
-  }
 }

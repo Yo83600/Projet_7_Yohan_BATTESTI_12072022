@@ -18,8 +18,6 @@ const EditProfil = () => {
 				}
         })
         .then(reponse => {
-			console.log(reponse.data)
-			console.log(reponse.data.firstname)
             setFirstname(reponse.data.firstname)
             setName(reponse.data.name)
             setEmail(reponse.data.email)
@@ -54,7 +52,7 @@ const EditProfil = () => {
         .catch( error => {
           console.log(error)
         })
-    }
+      }
 
     // information de modification du user
     const UpdateInfo = () => {
@@ -69,15 +67,27 @@ const EditProfil = () => {
     })
     }
 
+    // affichage de la photo dans le input
+    const loadFile = function(e) {
+      var reader = new FileReader();
+      reader.onload = function(){
+        var output = document.querySelector("#input-photo-post");
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    };
+
     return (
         <div className="modal-profil">
-            <a href='/' id="back-welcome">⬅ Retour</a>
-                <div className="modal-profil-content">
+            <div className="modal-profil-content">
 					<h2> Modifier votre profil</h2>
 					<form onSubmit={e => editSubmit(e)}>
             <div className='add-picture'>
-            <img src={Picture} className="edit-picture" alt="profil"/>
-            <input className="input-form" type="file" id="image" name="profil_image" onChange={e => setPicture(e.target.files[0])}/>
+            <img src={Picture} className="edit-picture" alt="profil" id="input-photo-post"/>
+            <input className="input-post" type="file" name="profil_image"  onChange={(e) => {
+                  setPicture(e.target.files[0])
+                  loadFile(e)
+            }}/>
             </div>
 						<label htmlFor="name">Nom:</label>
 						<input
