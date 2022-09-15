@@ -113,7 +113,7 @@ const Post = ({token}) => {
                                 onDrop = {e => loadFile(e)}
                             />
                         </div>
-                        <img className="output" alt=""/>
+                        {image &&  <img className="output" alt=""/>}
                     </div>
                 </div>
                 <div className="error">{error}</div>

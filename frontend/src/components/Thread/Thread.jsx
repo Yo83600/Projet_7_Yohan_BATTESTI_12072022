@@ -66,12 +66,11 @@ const Thread = ({ token }) => {
               <p> {post.message} </p>
             </div>
             <br></br>
-            <img
+            {post.imageURL && <img
               src={post.imageURL}
-              className={post.imageURL ? "image" : null}
+              className= "image"
               alt=""
-            />
-            <br></br>
+            /> }
             <div className="date">
               <p>
                 <em>{dateParser(post.createdAt)}</em>

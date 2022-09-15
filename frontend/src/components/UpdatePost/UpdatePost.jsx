@@ -118,7 +118,7 @@ const Update = ({ postId }) => {
                   loadFile(e)
                 }}
               />
-              <img id="output-image" alt=""/>
+              {image && <img id="output-image" alt=""/>}
               <button id="save">Modifier</button>
             </form>
             <button className="close-modal" onClick={toggleModal}>
