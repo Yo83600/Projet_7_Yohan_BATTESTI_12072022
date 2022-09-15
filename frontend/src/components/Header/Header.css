@@ -28,20 +28,28 @@ nav {
   display: flex;
   align-items: center;
   padding: 10px;
-  border-radius: 25px;
   margin-left: 30px;
   margin-right: 30px;
   font-size: 25px;
 }
 
+.bloc-disconnect{
+    background-color: rgba(128, 128, 128, 0.267);
+    padding: 13px;
+    border-radius: 50px;
+    justify-content: center;
+    display: flex;
+}
+
 .welcome{
     display: flex;
+    align-items: center;
 }
 
 .profil {
     display: flex;
     align-items: center;
-    padding-left: 30px;
+    padding-left: 40px;
     font-size: 25px;
 }
 
