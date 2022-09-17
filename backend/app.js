@@ -5,9 +5,7 @@ const helmet = require('helmet');
 const path = require('path');
 
 const Db = require("./db/db.js");
-// const User = require("./models/user.js")
-const models = require("./models/")
-// console.log(db)
+const models = require("./models/");
 
 /* Connexion à la base de donnée MySQL */
 Db.sync({force : false})
