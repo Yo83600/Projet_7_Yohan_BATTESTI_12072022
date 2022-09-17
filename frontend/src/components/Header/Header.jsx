@@ -20,14 +20,16 @@ const Header = () => {
               </div>
               <div className="welcome">
                 <h3> Bonjour, {localStorage.getItem("firstname")} {localStorage.getItem("name")} 😀 </h3>
-                <div className="profil">
-                  <Link to="/profil">
-                    <FontAwesomeIcon icon={faUserGear} />
-                  </Link>
-                </div>
-                <div className='button-disconnect'>
-                  <div className='bloc-disconnect'>
-                  <FontAwesomeIcon icon={faRightFromBracket}  onClick={()=> Disconnect() }/>
+                <div className='icon-navbar'>
+                  <div className="profil">
+                    <Link to="/profil">
+                      <FontAwesomeIcon icon={faUserGear} />
+                    </Link>
+                  </div>
+                  <div className='button-disconnect'>
+                    <div className='bloc-disconnect'>
+                    <FontAwesomeIcon icon={faRightFromBracket}  onClick={()=> Disconnect() }/>
+                    </div>
                   </div>
                 </div>
               </div>
